@@ -154,6 +154,7 @@ $(SRCDIR)/automata/parser/tcstslexer.ml: $(SRCDIR)/automata/parser/tcstslexer.ml
 
 clean:
 	rm -f $(OBJDIR)/*.o \
+              $(OBJDIR)/*.a \
 	      $(OBJDIR)/*.cm* \
 		  $(SRCDIR)/automata/parser/tcsautoparser.ml \
 		  $(SRCDIR)/automata/parser/tcsautoparser.mli \
