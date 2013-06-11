@@ -11,7 +11,7 @@ It is developed and maintained by:
 ## Installation
 
 - Install OCaml.
-- Create a copy of Config.include, name it Config and modify it to fit your configuration
+- Create a copy of Config.default, name it Config and modify it to fit your configuration
 - Run make
 
 
