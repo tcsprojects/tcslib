@@ -52,3 +52,6 @@ val decomposed_formula_to_formula :
 
 val format_decomposed_formula :
   decomposed_ltl_formula -> int -> string
+	
+val ltl_formula_link_map: ltl_formula -> ltl_formula array
+	

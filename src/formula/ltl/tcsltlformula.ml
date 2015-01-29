@@ -257,3 +257,10 @@ let decomposed_formula_to_formula decomp =
 		format;;
 		
 let format_decomposed_formula decomp ind = format_formula (decomposed_formula_to_formula decomp ind);;
+
+
+let ltl_formula_link_map = function
+	FUntil (f, g) -> [|FNext (FUntil (f, g))|]
+|	FRelease (f, g) -> [|FNext (FRelease (f, g))|]
+|	_ -> [||]
+
