@@ -325,7 +325,7 @@ let guarded_kupferman_vardi_wolper_transform f =
 	|	FNu (y, f') ->
 			let f' = replace x t2 f' in
 			if y <> x then FNu (y, f')
-			else let fl = guarded_flatten f' y FFF in
+			else let fl = guarded_flatten f' y FTT in
 			     let g = FNu (y, fl) in
 			     if t2 then subst_formula fl (FVariable y) g else g
 	|	f' -> f'
