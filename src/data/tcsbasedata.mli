@@ -154,4 +154,21 @@ module CompRef :
 	val equal: 'a compref -> 'a compref -> bool
   end
   
+	
+module Bits :
+  sig
+    type t = int array
+    val make : int -> int -> t
+    val zero : int -> t
+    val one : int -> t
+    val least : t -> int -> int
+    val least_zero : t -> int
+    val least_one : t -> int
+    val inc : t -> t
+	  val shl : t -> t
+    val shr : t -> t
+    val to_int : t -> int
+    val of_int : int -> t		
+  end
+	
   

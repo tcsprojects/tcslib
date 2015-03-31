@@ -467,3 +467,64 @@ module CompRef = struct
 		a == b
 		
 end;;
+
+
+
+module Bits = struct
+	
+	type t = int array
+	
+	let make n i = Array.make n i
+	
+	let zero n = make n 0
+	
+	let one n = make n 1
+	
+	let least bits b =
+		let n = Array.length bits in
+		let rec helper i =
+			if bits.(i) = b
+			then i
+			else if i < n
+			then helper (i+1)
+			else if b = 0
+			then n
+			else -1
+		in
+  	helper 0 
+		
+	let least_zero bits = least bits 0
+	
+	let least_one bits = least bits 1
+	
+	let inc bits =
+		let z = least_zero bits in
+		Array.init (Array.length bits) (fun i ->
+			if i <= z then 1 - bits.(i) else bits.(i)
+		)
+		
+	let shl bits =
+		Array.init (Array.length bits) (fun i ->
+			if i = 0 then 0 else bits.(i - 1)
+		)
+		
+	let shr bits =
+		let n = Array.length bits in
+		Array.init (Array.length bits) (fun i ->
+			if i = n - 1 then 0 else bits.(i + 1)
+		)
+		
+	let to_int bits =
+		Array.fold_right (
+			fun b acc -> 2 * acc + b
+		) bits 0
+		
+	let of_int i =
+		let rec h i =
+			if i = 0
+			then []
+			else (i mod 2)::h (i/2)
+		in
+		Array.of_list (h i)
+	
+end;;
