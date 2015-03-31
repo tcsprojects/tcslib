@@ -51,9 +51,21 @@ MODULES_AUTOMATA=$(OBJDIR)/tcsautomata.$(COMPILEEXT) \
 	$(OBJDIR)/tcsgameparser.$(COMPILEEXT) \
 	$(OBJDIR)/tcstransitionsysparser.$(COMPILEEXT)
 
+MODULES_FORMULA=$(OBJDIR)/tcslmmcformula.$(COMPILEEXT) \
+	$(OBJDIR)/tcsmmcformula.$(COMPILEEXT) \
+	$(OBJDIR)/tcsltmcformula.$(COMPILEEXT) \
+	$(OBJDIR)/tcsctlstarformula.$(COMPILEEXT) \
+	$(OBJDIR)/tcsltlformula.$(COMPILEEXT) \
+	$(OBJDIR)/tcspdlformula.$(COMPILEEXT) \
+	$(OBJDIR)/tcsformulaparser.$(COMPILEEXT) \
+	$(OBJDIR)/tcsformulaparse.$(COMPILEEXT)
+	
+	
+
 MODULES_INTF=$(MODULES_DATA) \
 	$(MODULES_UTILS) \
-	$(MODULES_AUTOMATA)
+	$(MODULES_AUTOMATA) \
+	$(MODULES_FORMULA)
 
 PREMODULES=$(OBJDIR)/tcsautomataparserinternal.$(COMPILEEXT) \
            $(OBJDIR)/tcsgameparserinternal.$(COMPILEEXT) \
@@ -62,11 +74,14 @@ PREMODULES=$(OBJDIR)/tcsautomataparserinternal.$(COMPILEEXT) \
 		   $(OBJDIR)/tcsparitygamelexer.$(COMPILEEXT) \
 		   $(OBJDIR)/tcsparitysolutionlexer.$(COMPILEEXT) \
 		   $(OBJDIR)/tcsltslexer.$(COMPILEEXT) \
-		   $(OBJDIR)/tcstslexer.$(COMPILEEXT)
+		   $(OBJDIR)/tcstslexer.$(COMPILEEXT) \
+		   $(OBJDIR)/tcsmetaformula.$(COMPILEEXT) \
+		   $(OBJDIR)/tcsformulalexer.$(COMPILEEXT) \
 
 PREINTF=$(OBJDIR)/tcsautomataparserinternal.cmi \
         $(OBJDIR)/tcsgameparserinternal.cmi \
-		$(OBJDIR)/tcstransitionsysparserinternal.cmi
+		$(OBJDIR)/tcstransitionsysparserinternal.cmi \
+		$(OBJDIR)/tcsmetaformula.cmi
 
 MODULES=$(PREMODULES) $(MODULES_INTF)
 
@@ -151,10 +166,73 @@ $(SRCDIR)/automata/parser/tcstsparser.ml: $(SRCDIR)/automata/parser/tcstsparser.
 
 $(SRCDIR)/automata/parser/tcstslexer.ml: $(SRCDIR)/automata/parser/tcstslexer.mll
 	$(OCAMLLEX) $(SRCDIR)/automata/parser/tcstslexer.mll
+	
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/lmmc/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/mmc/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<	
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/ltmc/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<	
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/ctlstar/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/ltl/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/pdl/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/parser/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/lmmc/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/mmc/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/ltmc/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/ctlstar/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/ltl/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/pdl/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+$(OBJDIR)/%.cmi: $(SRCDIR)/formula/parser/%.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<	
+
+$(SRCDIR)/formula/parser/tcsformulaparser.mli: $(SRCDIR)/formula/parser/tcsformulaparser.mly
+	$(OCAMLYACC) $(SRCDIR)/formula/parser/tcsformulaparser.mly
+
+$(SRCDIR)/formula/parser/tcsformulaparser.ml: $(SRCDIR)/formula/parser/tcsformulaparser.mly
+	$(OCAMLYACC) $(SRCDIR)/formula/parser/tcsformulaparser.mly
+
+$(OBJDIR)/tcsformulaparser.cmi: $(SRCDIR)/formula/parser/tcsformulaparser.mli
+	$(OCAMLCOMP) $(INCLUDES) -c -o $(OBJDIR)/tcsformulaparser.cmi $(SRCDIR)/formula/parser/tcsformulaparser.mli
+
+$(SRCDIR)/formula/parser/tcsformulalexer.ml: $(SRCDIR)/formula/parser/tcsformulalexer.mll
+	$(OCAMLLEX) $(SRCDIR)/formula/parser/tcsformulalexer.mll
+
+$(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/parser/%.ml
+	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
 
 clean:
 	rm -f $(OBJDIR)/*.o \
-              $(OBJDIR)/*.a \
+          $(OBJDIR)/*.a \
 	      $(OBJDIR)/*.cm* \
 		  $(SRCDIR)/automata/parser/tcsautoparser.ml \
 		  $(SRCDIR)/automata/parser/tcsautoparser.mli \
@@ -170,4 +248,8 @@ clean:
 		  $(SRCDIR)/automata/parser/tcsltslexer.ml \
 		  $(SRCDIR)/automata/parser/tcstsparser.ml \
 		  $(SRCDIR)/automata/parser/tcstsparser.mli \
-		  $(SRCDIR)/automata/parser/tcstslexer.ml
+		  $(SRCDIR)/automata/parser/tcstslexer.ml \
+		  $(SRCDIR)/formula/parser/tcsformulaparser.ml \
+		  $(SRCDIR)/formula/parser/tcsformulaparser.mli \
+		  $(SRCDIR)/formula/parser/tcsformulalexer.ml
+		  
