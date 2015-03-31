@@ -644,7 +644,8 @@ and __ocaml_lex_lexer_rec lexbuf __ocaml_lex_state =
         (TEOL)
 # 646 "src/formula/parser/tcsformulalexer.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; __ocaml_lex_lexer_rec lexbuf __ocaml_lex_state
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
+      __ocaml_lex_lexer_rec lexbuf __ocaml_lex_state
 
 ;;
 
