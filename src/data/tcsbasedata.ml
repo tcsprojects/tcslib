@@ -474,7 +474,9 @@ module Bits = struct
 	
 	type t = int array
 	
-	let make n i = Array.make n i
+	let len = Array.length
+	
+	let make = Array.make
 	
 	let zero n = make n 0
 	
@@ -483,13 +485,13 @@ module Bits = struct
 	let least bits b =
 		let n = Array.length bits in
 		let rec helper i =
-			if bits.(i) = b
-			then i
-			else if i < n
-			then helper (i+1)
-			else if b = 0
-			then n
-			else -1
+			if i >= n
+			then if b = 0
+ 					 then n
+					 else -1
+		  else if bits.(i) = b
+			     then i
+			     else helper (i+1)
 		in
   	helper 0 
 		
@@ -526,5 +528,13 @@ module Bits = struct
 			else (i mod 2)::h (i/2)
 		in
 		Array.of_list (h i)
+		
+	let not bits =
+		Array.init (len bits) (fun i -> 1 - bits.(i))
+		
+	let mult a b =
+		let la = len a in
+		let lb = len b in
+		Array.init (max la lb) (fun i -> if (i < la && i < lb) then a.(i) * b.(i) else 0)
 	
 end;;

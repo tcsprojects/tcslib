@@ -158,6 +158,7 @@ module CompRef :
 module Bits :
   sig
     type t = int array
+		val len : t -> int
     val make : int -> int -> t
     val zero : int -> t
     val one : int -> t
@@ -168,7 +169,9 @@ module Bits :
 	  val shl : t -> t
     val shr : t -> t
     val to_int : t -> int
-    val of_int : int -> t		
+    val of_int : int -> t
+		val not: t -> t
+		val mult: t -> t -> t
   end
 	
   
