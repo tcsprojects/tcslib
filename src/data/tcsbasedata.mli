@@ -165,6 +165,9 @@ module Bits :
     val least : t -> int -> int
     val least_zero : t -> int
     val least_one : t -> int
+    val greatest : t -> int -> int
+    val greatest_zero : t -> int
+    val greatest_one : t -> int
     val inc : t -> t
 	  val shl : t -> t
     val shr : t -> t

@@ -499,6 +499,23 @@ module Bits = struct
 	
 	let least_one bits = least bits 1
 	
+	let greatest bits b =
+		let n = Array.length bits in
+		let rec helper i =
+			if i < 0
+			then if b = 0
+ 					 then -1
+					 else n
+		  else if bits.(i) = b
+			     then i
+			     else helper (i-1)
+		in
+  	helper (n-1)
+		
+	let greatest_zero bits = greatest bits 0
+	
+	let greatest_one bits = greatest bits 1
+
 	let inc bits =
 		let z = least_zero bits in
 		Array.init (Array.length bits) (fun i ->

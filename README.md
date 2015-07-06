@@ -4,7 +4,7 @@ TCS Lib
 A multi-purpose library for OCaml.
 
 It is developed and maintained by:
-- (c) Oliver Friedmann, University of Munich (http://oliverfriedmann.de)
+- (c) Oliver Friedmann, University of Munich (http://oliverfriedmann.com)
 - (c) Martin Lange, University of Kassel (http://carrick.fmv.informatik.uni-kassel.de/~mlange/)
 
 
