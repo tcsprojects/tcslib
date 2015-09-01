@@ -476,12 +476,16 @@ module Bits = struct
 	
 	let len = Array.length
 	
+	let init = Array.init
+	
 	let make = Array.make
 	
 	let zero n = make n 0
 	
 	let one n = make n 1
 	
+	let onei n i = init n (fun j -> if i = j then 1 else 0)
+
 	let least bits b =
 		let n = Array.length bits in
 		let rec helper i =
@@ -518,21 +522,27 @@ module Bits = struct
 
 	let inc bits =
 		let z = least_zero bits in
-		Array.init (Array.length bits) (fun i ->
+		init (len bits) (fun i ->
 			if i <= z then 1 - bits.(i) else bits.(i)
 		)
 		
 	let shl bits =
-		Array.init (Array.length bits) (fun i ->
+		init (len bits) (fun i ->
 			if i = 0 then 0 else bits.(i - 1)
 		)
 		
 	let shr bits =
 		let n = Array.length bits in
-		Array.init (Array.length bits) (fun i ->
+		init (len bits) (fun i ->
 			if i = n - 1 then 0 else bits.(i + 1)
 		)
 		
+	let shri bits j =
+		let n = Array.length bits in
+		init (len bits) (fun i ->
+			if i + j >= n then 0 else bits.(i + j)
+		)
+
 	let to_int bits =
 		Array.fold_right (
 			fun b acc -> 2 * acc + b
@@ -547,11 +557,23 @@ module Bits = struct
 		Array.of_list (h i)
 		
 	let not bits =
-		Array.init (len bits) (fun i -> 1 - bits.(i))
+		init (len bits) (fun i -> 1 - bits.(i))
 		
 	let mult a b =
 		let la = len a in
 		let lb = len b in
-		Array.init (max la lb) (fun i -> if (i < la && i < lb) then a.(i) * b.(i) else 0)
+		init (max la lb) (fun i -> if (i < la && i < lb) then a.(i) * b.(i) else 0)
+		
+	let numb_zero_below bits i =
+		let rec helper j acc =
+			if j = i then acc else helper (j+1) (acc + 1 - bits.(j))
+		in
+		  helper 0 0
 	
+	let numb_one_below bits i =
+		let rec helper j acc =
+			if j = i then acc else helper (j+1) (acc + bits.(j))
+		in
+		  helper 0 0
+
 end;;

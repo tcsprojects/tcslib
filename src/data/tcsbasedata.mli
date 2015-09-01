@@ -162,15 +162,19 @@ module Bits :
     val make : int -> int -> t
     val zero : int -> t
     val one : int -> t
+		val onei : int -> int -> t
     val least : t -> int -> int
     val least_zero : t -> int
     val least_one : t -> int
     val greatest : t -> int -> int
     val greatest_zero : t -> int
     val greatest_one : t -> int
+		val numb_zero_below : t -> int -> int
+		val numb_one_below : t -> int -> int
     val inc : t -> t
 	  val shl : t -> t
     val shr : t -> t
+    val shri : t -> int -> t
     val to_int : t -> int
     val of_int : int -> t
 		val not: t -> t
