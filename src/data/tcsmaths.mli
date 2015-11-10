@@ -57,6 +57,9 @@ module BigInt :
 	val div_int: t -> int -> t
 	
 	val int_power_int: int -> int -> t
+	val power: t -> t -> t
+	val int_power: int -> t -> t
+	val power_int: t -> int -> t
 
 	val even: t -> bool
 	val odd: t -> bool

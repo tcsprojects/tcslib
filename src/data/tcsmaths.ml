@@ -111,7 +111,10 @@ module BigInt = struct
 	let div b1 b2 = div_big_int b1 b2
 	let div_int b i = div_big_int b (of_int i)
 	
-	let int_power_int i1 i2 = power_int_positive_int i1 i2
+	let int_power_int = power_int_positive_int
+	let power = power_big_int_positive_big_int
+  let int_power = power_int_positive_big_int
+	let power_int = power_big_int_positive_int
 
 	let even b = mod_int b 2 = 0
 	let odd b = mod_int b 2 = 1
