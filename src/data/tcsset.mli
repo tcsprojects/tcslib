@@ -89,11 +89,13 @@ module TreeMap : sig
     
     val empty : 'k Comparators.comparator -> ('k, 'v) t
     val empty_def : ('k, 'v) t
+		val get_compare: ('k, 'v) t -> 'k Comparators.comparator
 	val singleton : 'k Comparators.comparator -> 'k -> 'v -> ('k, 'v) t
 	val singleton_def : 'k -> 'v -> ('k, 'v) t
     val cardinal: ('k, 'v) t -> int
     val is_empty : ('k, 'v) t -> bool
     val add : 'k -> 'v -> ('k, 'v) t -> ('k, 'v) t
+		val filter : ('k -> 'v -> bool) -> ('k, 'v) t -> ('k, 'v) t
     val find : 'k -> ('k, 'v) t -> 'v
 	val find_opt: 'k -> ('k, 'v) t -> 'v option
     val mem : 'k -> ('k, 'v) t -> bool
@@ -113,6 +115,7 @@ module TreeMap : sig
 	val format: ('k * 'v) Formators.formator -> (('k, 'v) t) Formators.formator
     val pairs: ('k, 'v) t -> ('k * 'v) list
 	val update: 'k -> 'v -> ('v -> 'v) -> ('k, 'v) t -> ('k, 'v) t
+	val by_set: 'k TreeSet.t -> ('k -> 'v) -> ('k, 'v) t
 end;;
 
 module SubsetSet : sig

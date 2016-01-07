@@ -628,6 +628,14 @@ module TreeMap = struct
 		in
 			helper t
 
+	let by_set set f =
+		TreeSet.fold (fun k m -> add k (f k) m) set (empty (TreeSet.get_compare set))
+		
+  let get_compare = fst
+
+	let filter f map =
+		fold (fun k v m -> if f k v then add k v m else m) map (empty (get_compare map))
+		
 end
 
 
