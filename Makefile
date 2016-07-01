@@ -87,8 +87,6 @@ MODULES=$(PREMODULES) $(MODULES_INTF)
 
 INTERFACES=$(MODULES_INTF:.$(COMPILEEXT)=.cmi)
 
-MODULESML=src/data/tcsbasedata.ml src/data/tcslist.ml src/data/tcsset.ml
-
 all: modules library
 
 modules: $(PREINTF) $(INTERFACES) $(PREMODULES) $(MODULES)
@@ -99,6 +97,9 @@ library: modules libexec
 
 libexec:
 	$(OCAMLCOMP) -a -o $(LIBRARYNAME) $(CPPCOMPILER) $(MODULES)
+
+$(OBJDIR)/%.$(COMPILEEXT): ./tests/%.ml
+	ocamlfind ocamlopt -c -o $@ -package oUnit -linkpkg -I obj $<
 
 $(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/data/%.ml
 	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
@@ -232,8 +233,8 @@ $(SRCDIR)/formula/parser/tcsformulalexer.ml: $(SRCDIR)/formula/parser/tcsformula
 $(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/parser/%.ml
 	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
 
-TESTS: tests/*.ml
-	ocamlfind ocamlc -o bin/ounit -package oUnit -linkpkg -I obj $(MODULESML) tests/*.ml
+TESTS: obj/tcssettest.cmx Makefile
+	ocamlfind ocamlopt -o bin/ounit -package oUnit -linkpkg -I obj obj/tcslib.cmxa obj/tcssettest.cmx
 	bin/ounit
 	
 
