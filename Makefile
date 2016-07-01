@@ -87,6 +87,8 @@ MODULES=$(PREMODULES) $(MODULES_INTF)
 
 INTERFACES=$(MODULES_INTF:.$(COMPILEEXT)=.cmi)
 
+MODULESML=src/data/tcsbasedata.ml src/data/tcslist.ml src/data/tcsset.ml
+
 all: modules library
 
 modules: $(PREINTF) $(INTERFACES) $(PREMODULES) $(MODULES)
@@ -229,6 +231,11 @@ $(SRCDIR)/formula/parser/tcsformulalexer.ml: $(SRCDIR)/formula/parser/tcsformula
 
 $(OBJDIR)/%.$(COMPILEEXT): $(SRCDIR)/formula/parser/%.ml
 	$(OCAMLCOMP) $(INCLUDES) -c -o $@ $<
+
+TESTS: tests/*.ml
+	ocamlfind ocamlc -o bin/ounit -package oUnit -linkpkg -I obj $(MODULESML) tests/*.ml
+	bin/ounit
+	
 
 clean:
 	rm -f $(OBJDIR)/*.o \
