@@ -1,3 +1,4 @@
+.paths
 bin/ounit
 *.cache
 *.annot
