@@ -4,7 +4,7 @@ else
 	include Config
 endif
 
-INCLUDES=-I $(SRCDIR) -I $(OBJDIR) -I $(OCAML_DIR)
+INCLUDES=-I $(SRCDIR) -I $(OBJDIR)
 
 
 ifeq "$(COMPILE_WITH_OPT)" "YES"

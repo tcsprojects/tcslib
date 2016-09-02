@@ -14,12 +14,6 @@ COMPILE_WITH_OPT=YES
 
 
 #######
-# change this to the OCaml installation directory
-#######
-OCAML_DIR=/usr/lib/ocaml
-
-
-#######
 # DIRECTORIES
 #######
 OBJDIR=obj

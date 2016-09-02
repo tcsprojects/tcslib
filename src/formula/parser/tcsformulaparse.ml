@@ -9,7 +9,7 @@ in
   try
     Tcsformulaparser.program Tcsformulalexer.lexer buff
   with
-    Failure("lexing: empty token") -> print_string "Parser failure :: Empty Token\n"; exit 0;
+    Failure s -> print_string ("Parser failure :: " ^ s ^ "\n"); exit 0;
   | Tcsformulalexer.Eof -> print_string "Parser failure :: End Of String\n"; exit 0;;
 
 let parse_expression s =

@@ -25,3 +25,6 @@ src/automata/parser/tcsparitysolutionparser.mli
 src/automata/parser/tcstslexer.ml
 src/automata/parser/tcstsparser.ml
 src/automata/parser/tcstsparser.mli
+src/formula/parser/tcsformulalexer.ml
+src/formula/parser/tcsformulaparser.ml
+src/formula/parser/tcsformulaparser.mli

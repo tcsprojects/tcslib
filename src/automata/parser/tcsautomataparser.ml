@@ -71,7 +71,7 @@ type automata_type =
 let parse_automaton2 in_channel =
 
 	let automaton_type_data = ref "" in
-	let automaton_type str = automaton_type_data := String.lowercase str in
+	let automaton_type str = automaton_type_data := String.lowercase_ascii str in
 
 	let alphabet_int = ref None in
 	let automaton_int_alphabet size = alphabet_int := Some size in
