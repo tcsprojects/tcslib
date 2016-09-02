@@ -159,7 +159,7 @@ module CustomArgs = struct
 			category = (match category with
 							None -> _no_cat
 						|	Some c -> c);
-			idents = if !obj.ignore_case then List.map String.lowercase idents else idents;
+			idents = if !obj.ignore_case then List.map String.lowercase_ascii idents else idents;
 			parent = (match parent with
 							None -> !obj.root
 						|	Some p -> p);
@@ -206,7 +206,7 @@ module CustomArgs = struct
 	type toplevel_parse_type = TokenArg of argument_item | TokenStr of string
 
 	let _parse_toplevel obj str = 
-		let s = if !obj.ignore_case then String.lowercase str else str in
+		let s = if !obj.ignore_case then String.lowercase_ascii str else str in
 		let l = String.length s in
 		let t = ref "" in
 		let fnd = ref false in
