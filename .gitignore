@@ -28,3 +28,4 @@ src/automata/parser/tcstsparser.mli
 src/formula/parser/tcsformulalexer.ml
 src/formula/parser/tcsformulaparser.ml
 src/formula/parser/tcsformulaparser.mli
+_build

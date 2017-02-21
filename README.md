@@ -1,7 +1,7 @@
 TCS Lib
 ==================
 
-Copyright (c) 2008-2016
+Copyright (c) 2008-2017
 
 A multi-purpose library for OCaml.
 
@@ -12,21 +12,16 @@ It is developed and maintained by:
 
 ## Installation
 
-- Install OCaml.
-- Create a copy of Config.default, name it Config and modify it to fit your configuration
-- Run make
+Install OCaml, OUnit, OPAM, Ocamlbuild.
 
-
-## Unit Tests
-
-- Requires ocamlfind
-- Requires ounit
-- Install via OPAM (https://opam.ocaml.org)
-
-``
-	make TESTS
-``
+Then:
+```bash	
+git clone https://github.com/tcsprojects/tcslib.git
+cd tcslib
+make
+```
 
 
 ## Credits
-The code for handling the AVL trees is borrowed from the Objective Caml Standard Library Set module. (c) Xavier Leroy, projet Cristal, INRIA Rocquencourt
+The code for handling the AVL trees is borrowed from the Objective Caml Standard Library Set module. (c) Xavier Leroy,
+projet Cristal, INRIA Rocquencourt
