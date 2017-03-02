@@ -1,0 +1,31 @@
+# OASIS_START
+# DO NOT EDIT (digest: 9abba163f12289fc013abb963cb9454a)
+data/Tcslist
+data/Tcsarray
+data/Tcsbasedata
+data/Tcscache
+data/Tcsgraph
+data/Tcsmaths
+data/Tcsqueue
+data/Tcsset
+data/Tcsstrings
+utils/Tcsargs
+utils/Tcsmessage
+utils/Tcsstats
+utils/Tcstiming
+automata/Tcsautohelper
+automata/Tcsautomata
+automata/Tcsautotransform
+automata/Tcsgames
+automata/Tcstransitionsys
+automata/parser/Tcsautomataparser
+automata/parser/Tcsgameparser
+automata/parser/Tcstransitionsysparser
+formula/Tcsmetaformula
+formula/ctlstar/Tcsctlstarformula
+formula/ltl/Tcsltlformula
+formula/ltmc/Tcsltmcformula
+formula/mmc/Tcsmmcformula
+formula/pdl/Tcspdlformula
+formula/parser/Tcsformulaparse
+# OASIS_STOP
