@@ -5,6 +5,7 @@ Synopsis:    A multi-purpose library for OCaml.
 Description: A multi-purpose library for OCaml.
 Authors:     Oliver Friedmann, Martin Lange
 Maintainers: Oliver Friedmann, Martin Lange
+OCamlVersion: >= 4.03.0
 License:     BSD-3-clause
 Homepage: https://github.com/tcsprojects/tcslib
 SourceRepository head
