@@ -1,2 +1,32 @@
-"tests": include
-"src/data": include
+# OASIS_START
+# DO NOT EDIT (digest: 339f4a585ed51f86abf3f78aa729cedb)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library TCSLib
+"src/TCSLib.cmxs": use_TCSLib
+<src/*.ml{,i,y}>: package(extlib)
+<src/automata/*.ml{,i,y}>: package(extlib)
+<src/automata/parser/*.ml{,i,y}>: package(extlib)
+<src/data/*.ml{,i,y}>: package(extlib)
+<src/formula/*.ml{,i,y}>: package(extlib)
+<src/formula/ctlstar/*.ml{,i,y}>: package(extlib)
+<src/formula/lmmc/*.ml{,i,y}>: package(extlib)
+<src/formula/ltl/*.ml{,i,y}>: package(extlib)
+<src/formula/ltmc/*.ml{,i,y}>: package(extlib)
+<src/formula/mmc/*.ml{,i,y}>: package(extlib)
+<src/formula/parser/*.ml{,i,y}>: package(extlib)
+<src/formula/pdl/*.ml{,i,y}>: package(extlib)
+<src/utils/*.ml{,i,y}>: package(extlib)
+# OASIS_STOP

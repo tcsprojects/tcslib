@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 5f29085503d2dfd45fb4fd82b6f2a1a1) *)
+(* DO NOT EDIT (digest: de34e5f68902e993e377da250d377384) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -895,6 +895,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -916,6 +917,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -930,6 +932,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -944,6 +947,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -958,6 +962,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/parser";
@@ -972,6 +977,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/mmc";
                "src/formula/parser";
@@ -986,6 +992,22 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
+               "src/formula/ltmc";
+               "src/formula/mmc";
+               "src/formula/parser";
+               "src/formula/pdl";
+               "src/utils"
+            ]);
+          ("src/formula/lmmc",
+            [
+               "src";
+               "src/automata";
+               "src/automata/parser";
+               "src/data";
+               "src/formula";
+               "src/formula/ctlstar";
+               "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
                "src/formula/parser";
@@ -999,6 +1021,7 @@ let package_default =
                "src/automata/parser";
                "src/data";
                "src/formula";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -1013,6 +1036,7 @@ let package_default =
                "src/automata/parser";
                "src/data";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -1027,6 +1051,7 @@ let package_default =
                "src/automata/parser";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -1041,6 +1066,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -1055,6 +1081,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -1069,6 +1096,7 @@ let package_default =
                "src/data";
                "src/formula";
                "src/formula/ctlstar";
+               "src/formula/lmmc";
                "src/formula/ltl";
                "src/formula/ltmc";
                "src/formula/mmc";
@@ -1084,6 +1112,6 @@ let conf = {MyOCamlbuildFindlib.no_automatic_syntax = false}
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
-# 1088 "myocamlbuild.ml"
+# 1116 "myocamlbuild.ml"
 (* OASIS_STOP *)
 Ocamlbuild_plugin.dispatch dispatch_default;;
