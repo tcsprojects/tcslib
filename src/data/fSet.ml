@@ -268,7 +268,7 @@ let partition p t =
     t (empty, empty)
 
 let elements t =
-  rev_fold List.cons t []
+  rev_fold (fun x y -> x::y) t []
 
 let choose s =
   match min_elt s with
@@ -595,7 +595,7 @@ struct
       t (empty, empty)
 
   let elements t =
-    rev_fold List.cons t []
+    rev_fold (fun x y -> x::y) t []
 
   let choose s =
     match min_elt s with
