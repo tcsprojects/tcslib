@@ -5,14 +5,14 @@ Synopsis:    A multi-purpose library for OCaml.
 Description: A multi-purpose library for OCaml.
 Authors:     Oliver Friedmann, Martin Lange
 Maintainers: Oliver Friedmann, Martin Lange
-OCamlVersion: >= 4.03.0
+OCamlVersion: >= 4.06.0
 License:     BSD-3-clause
 Homepage: https://github.com/tcsprojects/tcslib
 SourceRepository head
   Type: git
   Location: git://github.com/tcsprojects/tcslib.git
   Browser: https://github.com/tcsprojects/tcslib
-Plugins:     META
+Plugins:     META (0.4)
 BuildTools: ocamlbuild
 Library "TCSLib"
   Path:       src
