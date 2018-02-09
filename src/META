@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: 25bb41e50fde16556f9e6e17dd5d68ac)
-version = "0.2"
+# DO NOT EDIT (digest: 8b63cd358faa238cc6ff80eccf780180)
+version = "0.3"
 description = "A multi-purpose library for OCaml."
-requires = "extlib"
+requires = "num extlib"
 archive(byte) = "TCSLib.cma"
 archive(byte, plugin) = "TCSLib.cma"
 archive(native) = "TCSLib.cmxa"

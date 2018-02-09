@@ -1,6 +1,6 @@
 opam-version: "1.2"
 name: "TCSLib"
-version: "0.2"
+version: "0.3"
 maintainer: "opam-devel@lists.ocaml.org"
 authors: [ "Oliver Friedmann"
            "Martin Lange" ]

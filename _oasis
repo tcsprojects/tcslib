@@ -1,6 +1,6 @@
 OASISFormat: 0.4
 Name:        TCSLib
-Version:     0.2
+Version:     0.3
 Synopsis:    A multi-purpose library for OCaml.
 Description: A multi-purpose library for OCaml.
 Authors:     Oliver Friedmann, Martin Lange
@@ -16,7 +16,7 @@ Plugins:     META
 BuildTools: ocamlbuild
 Library "TCSLib"
   Path:       src
-  BuildDepends: extlib
+  BuildDepends: num, extlib
   Modules:    data/Tcslist, data/Tcsarray, data/Tcsbasedata, data/Tcscache, data/Tcsgraph, data/Tcsmaths, data/Tcsqueue,
               data/Tcsset, data/Tcsstrings, utils/Tcsargs, utils/Tcsmessage, utils/Tcsstats, utils/Tcstiming,
               data/FMap, data/FSet,
