@@ -1,6 +1,4 @@
 open Tcsgameparserinternal;;
-open Tcsgames;;
-open Tcsset;;
 
 exception GameParserException of string * int * int
 

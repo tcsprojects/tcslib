@@ -6,24 +6,24 @@ module SimpleArgs : sig
 	  (arg_key * arg_spec * arg_doc) list ->
 	  Arg.anon_fun ->
 	  Arg.usage_msg ->
-	  (Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> 'a) ->
-	  (string -> Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> 'b) ->
+	  (Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> unit) ->
+	  (string -> Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> unit) ->
 	  unit
 	val parsearr :
 	  string array ->
 	  (arg_key * arg_spec * arg_doc) list ->
 	  Arg.anon_fun ->
 	  Arg.usage_msg ->
-	  (Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> 'a) ->
-	  (string -> Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> 'b) ->
+	  (Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> unit) ->
+	  (string -> Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> unit) ->
 	  unit
 	val parsestr :
 	  string ->
 	  (arg_key * arg_spec * arg_doc) list ->
 	  Arg.anon_fun ->
 	  Arg.usage_msg ->
-	  (Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> 'a) ->
-	  (string -> Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> 'b) ->
+	  (Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> unit) ->
+	  (string -> Arg.usage_msg -> (arg_key * arg_spec * arg_doc) list -> unit) ->
 	  unit
 	val argprint_help : string -> (arg_key * arg_spec * arg_doc) list -> unit
 	val argprint_bad :

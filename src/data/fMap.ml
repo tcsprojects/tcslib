@@ -180,7 +180,7 @@ let rec for_all p t =
 let rec exists p t =
   match t with
       Empty -> false
-    | Node ((x, y), _, l, r) -> p x y || for_all p l || for_all p r
+    | Node ((x, y), _, l, r) -> p x y || exists p l || exists p r
 
 let apply t x =
   find x t
@@ -433,7 +433,7 @@ struct
   let rec exists p t =
     match t with
         Empty -> false
-      | Node ((x, y), _, l, r) -> p x y || for_all p l || for_all p r
+      | Node ((x, y), _, l, r) -> p x y || exists p l || exists p r
 
   let apply t x =
     find x t

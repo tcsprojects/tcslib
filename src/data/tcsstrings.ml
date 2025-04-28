@@ -16,7 +16,7 @@ module StringUtils = struct
 	|	[s] -> s
 	|	(x::xs) -> x ^ (String.make 1 c) ^ implode xs c
 		
-	let rec indent s number c =
+	let indent s number c =
 		let a = String.make number c in
 		let l = explode s '\n' in
 		let l' = List.map (fun s -> if String.length s > 0 then a ^ s else s) l in

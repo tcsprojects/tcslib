@@ -272,7 +272,7 @@ module DynArray = struct
 			done;
 		a
 
-         let to_list (Intern (len, def, _, arr)) =
+         let to_list (Intern (len, _, _, arr)) =
                 let l = ref [] in
                 for i = !len - 1 downto 0 do
                    l := !arr.(i) :: !l
@@ -286,7 +286,7 @@ module DynArray = struct
 			done;
 			Intern (ref (!len), def, upd, ref a)
 			
-	 let map_inplace f (Intern (len, _, upd, arr)) =
+	 let map_inplace f (Intern (len, _, _, arr)) =
 		for i = 0 to !len - 1 do
 			!arr.(i) <- f (!arr.(i))
 		done

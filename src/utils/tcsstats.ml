@@ -98,7 +98,7 @@ module CustomStats = struct
 	let get_data_string = function StatsString s -> s
 	| _ -> raise (StatsException "CustomStats.get_data_string: Trying to read other type.")
 
-	let new_float init = StatsFloat (ref init, Printf.sprintf "%2.f")
+	let new_float init = StatsFloat (ref init, Printf.sprintf "%2.0f")
 
 	let new_float2 init f = StatsFloat (ref init, f)
 
@@ -113,7 +113,7 @@ module CustomStats = struct
 
 	let new_rational init1 init2 =
 		StatsRational (ref init1, ref init2,
-		               fun a b -> Printf.sprintf "%2.f" ((float a) /. (float b)))
+		               fun a b -> Printf.sprintf "%2.0f" ((float a) /. (float b)))
 
 	let new_rational2 init1 init2 f = StatsRational (ref init1, ref init2, f)
 

@@ -80,11 +80,11 @@ let rec or_collect f =
 let rec format_with_brackets f =
   let form = format_formula f in
   match f with
-	FAnd (f1, f2) -> "(" ^ form ^ ")"
-  | FOr (f1, f2) -> "(" ^ form ^ ")"
-  | FRelease (f, g) -> if f = FFF then form else "(" ^ form ^ ")"
-  | FUntil (f, g) -> if f = FTT then form else "(" ^ form ^ ")"
-  | f -> form
+	FAnd _ -> "(" ^ form ^ ")"
+  | FOr _ -> "(" ^ form ^ ")"
+  | FRelease (f, _) -> if f = FFF then form else "(" ^ form ^ ")"
+  | FUntil (f, _) -> if f = FTT then form else "(" ^ form ^ ")"
+  | _ -> form
 and format_formula f =
   let unaryr f s = s ^ (format_with_brackets f) in
   let binary f1 f2 s = (format_with_brackets f1) ^ s ^ (format_with_brackets f2) in
@@ -98,8 +98,8 @@ and format_formula f =
   | FTT -> "tt"
   | FFF -> "ff"
   | FNeg f' -> unaryr f' "!"
-  | FAnd (f1, f2) -> n_nary (and_collect f) " & "
-  | FOr (f1, f2) -> n_nary (or_collect f) " | "
+  | FAnd _ -> n_nary (and_collect f) " & "
+  | FOr _ -> n_nary (or_collect f) " | "
   | FNext f' -> unaryr f' "X"
   | FExists f' -> unaryr f' "E"
   | FForall f' -> unaryr f' "A"
@@ -303,7 +303,7 @@ type block = block_type *
              int list *     (* non-modal formulas *)
              int list       (* modal formulas *)
 
-let format_block ((_, fmls, lnks, _) as dcp) (kind, nonmods, mods) =
+let format_block dcp (kind, nonmods, mods) =
 	let fmt = format_decomposed_formula dcp in
 	(match kind with EBlock -> "E" | ABlock -> "A") ^ "(" ^
 	ListUtils.format (fun s -> s) ((List.map fmt nonmods) @ (List.map (fun i -> "X" ^ fmt i) mods))

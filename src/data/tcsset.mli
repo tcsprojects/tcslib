@@ -24,7 +24,7 @@ module AvlTree :
     val take_min_iter2 : 'a t -> 'a option * 'a t
     val take_max_iter : 'a t -> 'a * 'a t
     val take_max_iter2 : 'a t -> 'a option * 'a t
-    val iter : ('a -> 'b) -> 'a t -> unit
+    val iter : ('a -> unit) -> 'a t -> unit
     val fold : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b
     val fold_right : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b
     val elements : 'a t -> 'a list
@@ -100,7 +100,7 @@ module TreeMap : sig
 	val find_opt: 'k -> ('k, 'v) t -> 'v option
     val mem : 'k -> ('k, 'v) t -> bool
     val remove : 'k -> ('k, 'v) t -> ('k, 'v) t
-    val iter : ('k -> 'v -> 'unit) -> ('k, 'v) t -> unit
+    val iter : ('k -> 'v -> unit) -> ('k, 'v) t -> unit
 	val to_key_iterator: ('k, 'v) t -> 'k Iterators.iterator
 	val to_value_iterator: ('k, 'v) t -> 'v Iterators.iterator
     val for_all : ('k -> 'v -> bool) -> ('k, 'v) t -> bool

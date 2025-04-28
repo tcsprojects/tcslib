@@ -130,8 +130,8 @@ let resolve_formula ident params env =
   let rec params_match p =
     match p with
       [] -> true
-    | (PFormulaVar v, PFormula e)::rest -> params_match rest
-    | (PArithmVar v, PArithmExpr e)::rest -> params_match rest
+    | (PFormulaVar _, PFormula _)::rest -> params_match rest
+    | (PArithmVar _, PArithmExpr _)::rest -> params_match rest
     | _ -> false
   in
   let rec resolve env =
@@ -151,7 +151,7 @@ let eval_identifier = function
 |	IIndexed (s, a) -> IDefault (s ^ "_" ^ (string_of_int (eval_arithm_expr a)));;
 
 let rec eval_formula fexpr env =
-  let rec eval_param param env =
+  let eval_param param env =
     match param with
       PFormula f -> PFormula (eval_formula f env)
     | PArithmExpr e -> PArithmExpr (AConst (eval_arithm_expr e))

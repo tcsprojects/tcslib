@@ -1,0 +1,8 @@
+(library
+ (name tcslib)
+ (public_name tcslib) 
+ (libraries num)
+ (wrapped false)
+ (flags (:standard -w -32))
+)
+(include_subdirs unqualified)

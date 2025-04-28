@@ -1,5 +1,4 @@
 open Tcstransitionsysparserinternal;;
-open Tcstransitionsys;;
 open Tcsset;;
 
 exception TransitionSysParserException of string * int * int

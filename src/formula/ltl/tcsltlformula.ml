@@ -1,7 +1,5 @@
 open Tcsmetaformula;;
 open Tcsarray;;
-open Tcslist;;
-open Tcsset;;
 
 
 type ltl_formula = 
@@ -55,11 +53,11 @@ let rec or_collect f =
 let rec format_with_brackets f =
   let form = format_formula f in
   match f with
-	FAnd (f1, f2) -> "(" ^ form ^ ")"
-  | FOr (f1, f2) -> "(" ^ form ^ ")"
-  | FRelease (f, g) -> if f = FFF then form else "(" ^ form ^ ")"
-  | FUntil (f, g) -> if f = FTT then form else "(" ^ form ^ ")"
-  | f -> form
+	FAnd _ -> "(" ^ form ^ ")"
+  | FOr _ -> "(" ^ form ^ ")"
+  | FRelease _ -> if f = FFF then form else "(" ^ form ^ ")"
+  | FUntil _ -> if f = FTT then form else "(" ^ form ^ ")"
+  | _ -> form
 and format_formula f =
   let unaryr f s = s ^ (format_with_brackets f) in
   let binary f1 f2 s = (format_with_brackets f1) ^ s ^ (format_with_brackets f2) in
@@ -73,8 +71,8 @@ and format_formula f =
   | FTT -> "tt"
   | FFF -> "ff"
   | FNeg f' -> unaryr f' "!"
-  | FAnd (f1, f2) -> n_nary (and_collect f) " & "
-  | FOr (f1, f2) -> n_nary (or_collect f) " | "
+  | FAnd _ -> n_nary (and_collect f) " & "
+  | FOr _ -> n_nary (or_collect f) " | "
   | FNext f' -> unaryr f' "X"
   | FUntil (f', g') -> binary f' g' "U"
   | FRelease (f', g') -> binary f' g' "R"

@@ -73,9 +73,9 @@ let rec or_collect f =
 let rec format_formula_with_brackets f =
   let form = format_formula f in
   match f with
-	FAnd (f1, f2) -> "(" ^ form ^ ")"
-  | FOr (f1, f2) -> "(" ^ form ^ ")"
-  | f -> form
+	FAnd _ -> "(" ^ form ^ ")"
+  | FOr _ -> "(" ^ form ^ ")"
+  | _ -> form
 and format_formula f =
   let unaryr f s = s ^ (format_formula_with_brackets f) in
   let binary f1 f2 s = (format_formula_with_brackets f1) ^ s ^ (format_formula_with_brackets f2) in
@@ -89,8 +89,8 @@ and format_formula f =
   | FTT -> "tt"
   | FFF -> "ff"
   | FNeg f' -> unaryr f' "!"
-  | FAnd (f1, f2) -> n_nary (and_collect f) " & "
-  | FOr (f1, f2) -> n_nary (or_collect f) " | "
+  | FAnd _ -> n_nary (and_collect f) " & "
+  | FOr _ -> n_nary (or_collect f) " | "
   | FDiamond (p, g) -> "<" ^ format_program p ^ ">" ^ format_formula_with_brackets g
   | FBox (p, g) -> "[" ^ format_program p ^ "]" ^ format_formula_with_brackets g
 in
@@ -103,9 +103,9 @@ in
 and format_program_with_brackets f =
   let form = format_program f in
   match f with
-	FConcat (f1, f2) -> "(" ^ form ^ ")"
-  | FChoice (f1, f2) -> "(" ^ form ^ ")"
-  | f -> form
+	FConcat _ -> "(" ^ form ^ ")"
+  | FChoice _ -> "(" ^ form ^ ")"
+  | _ -> form
 and format_program f =
   let binary f1 f2 s = (format_program_with_brackets f1) ^ s ^ (format_program_with_brackets f2) in
   match f with

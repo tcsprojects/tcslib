@@ -17,8 +17,6 @@
                             Informatique et en Automatique
 *)
 
-open ExtList
-
 type 'a t =
     Empty
   | Node of ('a * int * 'a t * 'a t)
@@ -73,8 +71,8 @@ let rec mem x t =
     [glue l r] assumes that [l] and [r] are well-formed and balanced.
 *)
 
-let delta = 4    (** The tree balancing factor. *)
-let alpha = 2    (** The single / double rotation factor. *)
+let delta = 4    (* The tree balancing factor. *)
+let alpha = 2    (* The single / double rotation factor. *)
 
 let make_tree x l r =
   match l, r with
@@ -257,7 +255,7 @@ let rec for_all p t =
 let rec exists p t =
   match t with
       Empty -> false
-    | Node (x, _, l, r) -> p x || for_all p l || for_all p r
+    | Node (x, _, l, r) -> p x || exists p l || exists p r
 
 let filter p t =
   fold (fun x q -> if p x then add x q else q) t empty
@@ -287,7 +285,7 @@ let rec cons_enum t e =
 let rec enum_size e =
   match e with
       End -> 0
-    | More (x, r, e) -> 1 + size r + enum_size e
+    | More (_, r, e) -> 1 + size r + enum_size e
 
 let enum t = cons_enum t End
 
@@ -584,7 +582,7 @@ struct
   let rec exists p t =
     match t with
         Empty -> false
-      | Node (x, _, l, r) -> p x || for_all p l || for_all p r
+      | Node (x, _, l, r) -> p x || exists p l || exists p r
 
   let filter p t =
     fold (fun x q -> if p x then add x q else q) t empty
@@ -614,7 +612,7 @@ struct
   let rec enum_size e =
     match e with
         End -> 0
-      | More (x, r, e) -> 1 + size r + enum_size e
+      | More (_, r, e) -> 1 + size r + enum_size e
 
   let enum t = cons_enum t End
 

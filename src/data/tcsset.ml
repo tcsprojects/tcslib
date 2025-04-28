@@ -40,7 +40,7 @@ module AvlTree = struct
 	|	Node (_, h, _, _) -> h
 
     let height_join left right =
-    	1 + Pervasives.max (height left) (height right)
+    	1 + max (height left) (height right)
     	
 	let create x l r =
 		Node (x, height_join l r, l, r)
@@ -188,7 +188,7 @@ module TreeSet = struct
 
 	let rec max_elt' = function
 		AvlTree.Empty -> raise Not_found
-	  | AvlTree.Node(v, _, l, AvlTree.Empty) -> v
+	  | AvlTree.Node(v, _, _, AvlTree.Empty) -> v
 	  | AvlTree.Node(_, _, _, r) -> max_elt' r
 
 	let max_elt (_, t) = max_elt' t
@@ -257,8 +257,8 @@ module TreeSet = struct
 
 	let rec inter' cmp s1 s2 =
 	  match (s1, s2) with
-		(AvlTree.Empty, t2) -> AvlTree.Empty
-	  | (t1, AvlTree.Empty) -> AvlTree.Empty
+		(AvlTree.Empty, _) -> AvlTree.Empty
+	  | (_, AvlTree.Empty) -> AvlTree.Empty
 	  | (AvlTree.Node(v1, _, l1, r1), t2) ->
 		  match split' cmp v1 t2 with
 			(l2, false, r2) ->
@@ -270,7 +270,7 @@ module TreeSet = struct
 
 	let rec diff' cmp s1 s2 =
 	  match (s1, s2) with
-		(AvlTree.Empty, t2) -> AvlTree.Empty
+		(AvlTree.Empty, _) -> AvlTree.Empty
 	  | (t1, AvlTree.Empty) -> t1
 	  | (AvlTree.Node(v1, _, l1, r1), t2) ->
 		  match split' cmp v1 t2 with
@@ -361,7 +361,7 @@ module TreeSet = struct
 
 	let rec cardinal = function
 		(_, AvlTree.Empty) -> 0
-	  | (c, AvlTree.Node(v, _, l, r)) -> cardinal (c, l) + 1 + cardinal (c, r)
+	  | (c, AvlTree.Node(_, _, l, r)) -> cardinal (c, l) + 1 + cardinal (c, r)
 
 	let rec elements_aux accu = function
 		AvlTree.Empty -> accu
@@ -487,7 +487,7 @@ module TreeMap = struct
 
 	let rec cardinal = function
 		(_, AvlTree.Empty) -> 0
-	  | (c, AvlTree.Node(v, _, l, r)) -> cardinal (c, l) + 1 + cardinal (c, r)
+	  | (c, AvlTree.Node(_, _, l, r)) -> cardinal (c, l) + 1 + cardinal (c, r)
 
     let rec find' cmp x = function
         AvlTree.Empty ->
@@ -505,7 +505,7 @@ module TreeMap = struct
     let rec mem' cmp x = function
         AvlTree.Empty ->
           false
-      | AvlTree.Node((v, d), _, l, r) ->
+      | AvlTree.Node((v, _), _, l, r) ->
           let c = cmp x v in
           c = 0 || mem' cmp x (if c < 0 then l else r)
     
@@ -675,7 +675,7 @@ module SubsetSet = struct
 		(occur', base', sys', lookup')
 	
 	let remove_sets t sets =
-		TreeSet.fold (fun set t' -> remove_set t set) sets t		
+		TreeSet.fold (fun set _ -> remove_set t set) sets t		
 	
 	(* assumes that set is not already included *)
 	let _internal_add ((occur, base, sys, lookup) as t) set deco =
@@ -689,10 +689,10 @@ module SubsetSet = struct
 	let singleton compare (set, deco) =
 		_internal_add (empty compare) set deco
 	
-	let add_subsume_supersets ((occur, base, sys, lookup) as t) (set, deco) =
+	let add_subsume_supersets t (set, deco) =
 		_internal_add (remove_sets t (supersets t set)) set deco
 		
-	let add_subsume_subsets ((occur, base, sys, lookup) as t) (set, deco) =
+	let add_subsume_subsets t (set, deco) =
 		_internal_add (remove_sets t (subsets t set)) set deco
 		
 	let is_empty (_, _, sys, _) = TreeSet.is_empty sys
@@ -834,7 +834,7 @@ module IntervalSet = struct
 	  	let rec union_aux input limit head stream =
 	  		match head with
 	  		    None -> (input, None, AvlTree.Empty)
-	  		|   Some (x, y) ->
+	  		|   Some (x, _) ->
 	  				match input with
 	  					AvlTree.Empty -> (AvlTree.Empty, head, stream)
 	  				|	AvlTree.Node ((a, b), _, left, right) ->
@@ -975,10 +975,10 @@ module IntervalSet = struct
 			let (l, b, r) = split' t in
 			((funcs, l), b, (funcs, r))
 			
-	let rec inter ((cmp, pred, succ, _) as funcs, input) (_, stream) =
+	let rec inter ((cmp, _, succ, _) as funcs, input) (_, stream) =
 	  	let rec inter_aux input head stream =
 	  		match head with	None -> (AvlTree.Empty, None, AvlTree.Empty)
-	  		|   Some (x, y) -> match input with
+	  		|   Some (x, _) -> match input with
 	  				AvlTree.Empty -> (AvlTree.Empty, head, stream)
 	  			|	AvlTree.Node ((a, b), _, left, right) ->
 	  					let (left, head, stream) = if cmp x a < 0 then inter_aux left head stream
@@ -1010,7 +1010,7 @@ module IntervalSet = struct
 	let diff ((cmp,pred,succ,_) as funcs, input) (_, stream) =
 	  	let rec diff_aux input head stream =
 	  		match head with	None -> (input, None, AvlTree.Empty)
-	  		|   Some (x, y) -> match input with
+	  		|   Some (x, _) -> match input with
 	  				AvlTree.Empty -> (AvlTree.Empty, head, stream)
 	  			|	AvlTree.Node ((a, b), _, left, right) ->
 	  					let (left, head, stream) = if cmp x a < 0 then diff_aux left head stream

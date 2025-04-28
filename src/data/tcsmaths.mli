@@ -15,8 +15,6 @@ module IntUtils :
     val prod : int -> int -> (int -> int) -> int
   end
   
-open Big_int;;  
-  
 module BigInt :
   sig
     type t

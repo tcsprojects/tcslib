@@ -1,6 +1,4 @@
 open Tcstiming
-open Tcsbasedata
-open Tcsset
 
 type 's initpg = ('s *
                   ('s -> 's list) *

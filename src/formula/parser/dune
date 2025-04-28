@@ -1,0 +1,12 @@
+(rule
+ (targets tcsformulalexer.ml)
+ (deps tcsformulalexer.mll)
+ (action
+  (run ocamllex -q %{deps})))
+
+(rule
+ (targets tcsformulaparser.ml tcsformulaparser.mli)
+ (deps tcsformulaparser.mly)
+ (action
+  (run ocamlyacc tcsformulaparser.mly))
+)  

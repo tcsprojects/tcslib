@@ -1,5 +1,4 @@
 open Tcsbasedata;;
-open Tcsset;;
 open Tcslist;;
 open Tcsautomata;;
 open Tcstiming;;

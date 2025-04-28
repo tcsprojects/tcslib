@@ -1,0 +1,67 @@
+(rule
+ (targets tcsautomatalexer.ml)
+ (deps tcsautomatalexer.mll)
+ (action
+  (run ocamllex -q %{deps})))
+
+(rule
+ (targets tcsautoparser.ml tcsautoparser.mli)
+ (deps tcsautoparser.mly)
+ (action
+  (run ocamlyacc tcsautoparser.mly))
+)  
+
+
+(rule
+ (targets tcsltslexer.ml)
+ (deps tcsltslexer.mll)
+ (action
+  (run ocamllex -q %{deps})))
+
+(rule
+ (targets tcsltsparser.ml tcsltsparser.mli)
+ (deps tcsltsparser.mly)
+ (action
+  (run ocamlyacc tcsltsparser.mly))
+)  
+
+
+(rule
+ (targets tcstslexer.ml)
+ (deps tcstslexer.mll)
+ (action
+  (run ocamllex -q %{deps})))
+
+(rule
+ (targets tcstsparser.ml tcstsparser.mli)
+ (deps tcstsparser.mly)
+ (action
+  (run ocamlyacc tcstsparser.mly))
+)  
+
+
+(rule
+ (targets tcsparitygamelexer.ml)
+ (deps tcsparitygamelexer.mll)
+ (action
+  (run ocamllex -q %{deps})))
+
+(rule
+ (targets tcsparitygameparser.ml tcsparitygameparser.mli)
+ (deps tcsparitygameparser.mly)
+ (action
+  (run ocamlyacc tcsparitygameparser.mly))
+)  
+
+(rule
+ (targets tcsparitysolutionlexer.ml)
+ (deps tcsparitysolutionlexer.mll)
+ (action
+  (run ocamllex -q %{deps})))
+
+(rule
+ (targets tcsparitysolutionparser.ml tcsparitysolutionparser.mli)
+ (deps tcsparitysolutionparser.mly)
+ (action
+  (run ocamlyacc tcsparitysolutionparser.mly))
+)  

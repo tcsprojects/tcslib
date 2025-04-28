@@ -123,10 +123,10 @@ module HierarchicalTiming = struct
 			!p.children <- List.filter (fun c -> c!=obj) !p.children
 		)
 	
-	let rec start obj =
+	let start obj =
 		SimpleTiming.start !obj.timing_obj
 	
-	let rec stop obj =
+	let stop obj =
 		SimpleTiming.stop !obj.timing_obj
 	
 	let state obj = SimpleTiming.state !obj.timing_obj

@@ -1,5 +1,4 @@
 open Tcslist;;
-open Tcsarray;;
 open Tcsset;;
 open Tcsbasedata;;
 open Tcscache;;
@@ -164,7 +163,7 @@ module DynamicGraph = struct
     		done
     	)
 
-    let add_edge v w (cmps, data, number) =
+    let add_edge v w (_, data, _) =
     	let (vdat, vbwd, vfwd) = TreeMap.find v !data in
     	data := TreeMap.add v (vdat, vbwd, TreeSet.add w vfwd) !data;
     	let (wdat, wbwd, wfwd) = TreeMap.find w !data in

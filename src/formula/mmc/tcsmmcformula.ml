@@ -75,7 +75,7 @@ let make_uniquely_bound f =
     let s = v ^ (string_of_int i) in
     if List.mem s l then getName l v (i + 1) else s
   in
-  let rec update vars subst x =
+  let update vars subst x =
     if (List.mem x vars)
     then let x' = getName vars x 0
          in (x', fun y -> if (y = x) then x' else subst y)
@@ -175,9 +175,9 @@ let rec or_collect f =
 let rec format_with_brackets f =
   let form = format_formula f in
   match f with
-	FAnd (f1, f2) -> "(" ^ form ^ ")"
-  | FOr (f1, f2) -> "(" ^ form ^ ")"
-  | f -> form
+	FAnd _ -> "(" ^ form ^ ")"
+  | FOr _ -> "(" ^ form ^ ")"
+  | _ -> form
 and format_formula f =
   let unaryr f s = s ^ (format_with_brackets f) in
   let binary f1 f2 s = (format_with_brackets f1) ^ s ^ (format_with_brackets f2) in
@@ -192,8 +192,8 @@ and format_formula f =
   | FTT -> "tt"
   | FFF -> "ff"
   | FNeg f' -> unaryr f' "!"
-  | FAnd (f1, f2) -> n_nary (and_collect f) " & "
-  | FOr (f1, f2) -> n_nary (or_collect f) " | "
+  | FAnd _ -> n_nary (and_collect f) " & "
+  | FOr _ -> n_nary (or_collect f) " | "
   | FDiamond f' -> unaryr f' ("<>")
   | FBox f' -> unaryr f' ("[]")
   | FMu (v, f') -> unaryr f' ("mu " ^ v ^ ".")
@@ -265,8 +265,8 @@ let rec is_positive g =
   | FAnd (f1, f2) -> (is_positive f1) && (is_positive f2)
   | FDiamond f -> is_positive f
   | FBox f -> is_positive f
-  | FMu (x, f) -> is_positive f
-  | FNu (x, f) -> is_positive f
+  | FMu (_, f) -> is_positive f
+  | FNu (_, f) -> is_positive f
   | FNeg (FProp _) -> true
   | FNeg _ -> false
   | _ -> true;;
@@ -278,7 +278,7 @@ let rec guarded_flatten f var pred = match f with
   | FNeg f' -> FNeg (guarded_flatten f' var pred)
   | _ -> f;;
 
-let rec guarded_transform f =
+let guarded_transform f =
   let rec flat v f pred = guarded_flatten (guarded_transform' f true) v pred
   and guarded_transform' f t2 = match f with
     FOr (f1, f2) -> FOr ((guarded_transform' f1 t2), (guarded_transform' f2 t2))

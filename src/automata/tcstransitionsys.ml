@@ -1,8 +1,6 @@
 open Tcstiming;;
 open Tcsarray;;
 open Tcsset;;
-open Tcsbasedata;;
-open Tcslist;;
 
 
 type ('s, 'l, 'p) initlts =

@@ -140,7 +140,7 @@ module NBAtoDPA = struct
 	        let rec subsetDelta (Node (n, states, children)) =
             	Node (n, TreeSet.fold (fun el -> Iterators.fold (delta el letter) TreeSet.add) states state_set_empty, TreeSet.map subsetDelta children) in
 	        (* -- II -- split final states *)
-	        let rec splitFinalStates minFreeName tree =
+	        let splitFinalStates minFreeName tree =
 	          let mfn = ref minFreeName in
 	          let rec splitFStates = function Node (n, states, children) ->
                  let fStates = TreeSet.filter accept states in
@@ -160,7 +160,7 @@ module NBAtoDPA = struct
 	                - union = union of labels of all older siblings
 	                - newLabel = label without union
 	            *)
-	         let rec mergeSiblings siblings =
+	         let mergeSiblings siblings =
 	                (* union of the states of all older nodes *)
 	                let unionOlderSiblings n' node_set =
 	                	TreeSet.fold (fun (Node (n, states, _)) s -> if n < n' then TreeSet.union s states else s) node_set state_set_empty

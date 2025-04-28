@@ -12,7 +12,7 @@ module SimpleArgs = struct
 		) speclist [] in
 		try
 			Arg.parse_argv ~current:curr argv speclist' anon_fun usage_msg
-		with Arg.Help s -> (print_help usage_msg speclist; exit 1)
+		with Arg.Help _ -> (print_help usage_msg speclist; exit 1)
 		   | Arg.Bad s -> (print_bad (String.sub s 0 (String.index s '\n')) usage_msg speclist; exit 1);;
 
 	let parse speclist anon_fun usage_msg print_help print_bad =
@@ -29,7 +29,7 @@ module SimpleArgs = struct
 		|   (h::t) -> (List.fold_left (fun s i -> s ^ ", " ^ i) h t)
 		|	_ -> "" in
 		print_string (usage_msg ^ "\n");
-		List.iter (fun (keys, spec, doc) ->
+		List.iter (fun (keys, _, doc) ->
 			print_string ("  " ^ keys_format keys ^ " " ^ doc ^ "\n")
 		) speclist;
 		print_string "\n";;
@@ -226,7 +226,7 @@ module CustomArgs = struct
 		)
 		else TokenStr str
 
-	let _parse_parameters obj arg current args =
+	let _parse_parameters _ arg current args =
 		let len = Array.length args in
 		if !arg.used && (not !arg.multiple)
 		then raise (ArgsException (ArgsMultipleOccurrence arg));
@@ -250,7 +250,7 @@ module CustomArgs = struct
 			with Failure _ -> wrong_param_exception s a
 		in
 
-		let parse_string s a =
+		let parse_string s _ =
 			s
 		in
 		

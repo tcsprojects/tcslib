@@ -1,8 +1,6 @@
 open Tcstiming;;
 open Tcsarray;;
 open Tcsset;;
-open Tcsbasedata;;
-open Tcslist;;
 
 
 type 's initpg = ('s *
@@ -47,7 +45,7 @@ let get_compact_initpg (((start, delta, omega, player, fmt), (_, index, cmp)): '
 	in
 	
 	let delta' (s: 's * int) =
-		let helper pl init =
+		let helper pl _ =
 			let states = ref (TreeSet.empty compare') in
 			let todo = ref (TreeSet.singleton compare' s) in
 			while (not (TreeSet.is_empty !todo)) do

@@ -1,6 +1,3 @@
-open Tcsformulaparser;;
-open Tcsformulalexer;;
-open Printf;;
 open Tcsmetaformula;;
 
 let parse s =
