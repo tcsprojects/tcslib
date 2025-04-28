@@ -13,6 +13,7 @@
  (depends
    ocaml
    dune
+   num
  )
  (license "BSD-3-clause")
  (authors "Oliver Friedmann" "Martin Lange") 
