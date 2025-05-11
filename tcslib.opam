@@ -9,7 +9,7 @@ license: "BSD-3-clause"
 homepage: "https://github.com/tcsprojects/tcslib"
 bug-reports: "https://github.com/tcsprojects/tcslib/issues"
 depends: [
-  "ocaml"
+  "ocaml" {>= "4.8"}
   "dune" {>= "3.10"}
   "num"
   "odoc" {with-doc}

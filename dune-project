@@ -11,7 +11,7 @@
  (synopsis "A multi-purpose library for OCaml")
  (description "A multi-purpose library for OCaml.")
  (depends
-   ocaml
+   (ocaml (>= 4.8))
    dune
    num
  )
