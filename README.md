@@ -47,6 +47,8 @@ dune build
   dune-release tag
   dune-release distrib
   dune-release publish
+  mv tcslib.opam TCSLib.opam
   dune-release opam pkg
   dune-release opam submit
+  mv TCSLib.opam tcslib.opam
 ```  
