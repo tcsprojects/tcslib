@@ -1,6 +1,6 @@
 (library
- (name TCSLib)
- (public_name TCSLib) 
+ (name tcslib)
+ (public_name tcslib) 
  (libraries num)
  (wrapped false)
  (flags (:standard -w -32))

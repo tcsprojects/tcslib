@@ -1,4 +1,4 @@
-TCSLib
+tcslib
 ==================
 
 Copyright (c) 2008-2025

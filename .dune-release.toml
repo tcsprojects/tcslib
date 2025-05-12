@@ -3,4 +3,4 @@ name = "TCSLib"
 
 [publish]
 # Dune will already generate the opam file, don't look in ./opam/
-opam = "TCSLib.opam"
+opam = "tcslib.opam"
