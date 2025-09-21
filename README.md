@@ -17,7 +17,7 @@ projet Cristal, INRIA Rocquencourt
 
 ## OPAM
 
-You can install this package via OPAM under the name `TCSLib`.
+You can install this package via OPAM under the name `tcslib`.
 
 
 ## Commands
@@ -44,11 +44,9 @@ dune build
 ```
 5. Release
 ```
-  mv tcslib.opam TCSLib.opam
   dune-release tag
   dune-release distrib
   dune-release publish
   dune-release opam pkg
   dune-release opam submit
-  mv TCSLib.opam tcslib.opam
 ```  

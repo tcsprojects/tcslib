@@ -1,5 +1,5 @@
 [package]
-name = "TCSLib"
+name = "tcslib"
 
 [publish]
 # Dune will already generate the opam file, don't look in ./opam/
