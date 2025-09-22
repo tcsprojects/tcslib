@@ -1,6 +1,6 @@
 ## v0.6
 
-- Change name to tcslib
+- Change name to tcs-lib
 
 ## v0.5
 

@@ -1,5 +1,5 @@
 (lang dune 3.10)
-(name tcslib)
+(name tcs-lib)
 (version 0.6)
 
 (generate_opam_files true)
@@ -7,7 +7,7 @@
 (source (github tcsprojects/tcslib))
 
 (package
- (name tcslib)
+ (name tcs-lib)
  (synopsis "A multi-purpose library for OCaml")
  (description "A multi-purpose library for OCaml.")
  (depends

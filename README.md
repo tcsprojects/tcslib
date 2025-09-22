@@ -1,4 +1,4 @@
-tcslib
+tcs-lib
 ==================
 
 Copyright (c) 2008-2025
@@ -17,7 +17,7 @@ projet Cristal, INRIA Rocquencourt
 
 ## OPAM
 
-You can install this package via OPAM under the name `tcslib`.
+You can install this package via OPAM under the name `tcs-lib`.
 
 
 ## Commands
