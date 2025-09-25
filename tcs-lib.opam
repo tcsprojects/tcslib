@@ -10,7 +10,7 @@ homepage: "https://github.com/tcsprojects/tcslib"
 bug-reports: "https://github.com/tcsprojects/tcslib/issues"
 depends: [
   "ocaml" {>= "4.8"}
-  "dune" {>= "3.10"}
+  "dune" {>= "3.18"}
   "num"
   "odoc" {with-doc}
 ]
@@ -29,3 +29,4 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/tcsprojects/tcslib.git"
+x-maintenance-intent: ["(latest)"]

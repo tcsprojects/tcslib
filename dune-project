@@ -1,4 +1,4 @@
-(lang dune 3.10)
+(lang dune 3.18)
 (name tcs-lib)
 (version 0.6)
 
@@ -8,6 +8,7 @@
 
 (package
  (name tcs-lib)
+ (maintenance_intent "(latest)")
  (synopsis "A multi-purpose library for OCaml")
  (description "A multi-purpose library for OCaml.")
  (depends
